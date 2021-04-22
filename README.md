@@ -45,29 +45,29 @@ Then proceed to play the other 4 strategies ( which also need to be coded up)
 Probably will have to create an emit server-side that says you have reached 13, so I release some text onto the screen client-side. Once that is over, emit client-side to restart and the cycle begins again.
 Do not create more timer objects, just restart if need be. 
 Timer is creating many issues. Will definitely rework how the timer works, because right now there are too many variables and the code is far too unstable. Might just use break statements to get out of while loop and if the while ends just create a new timer. This way we can create a new timer for each individual machine game.
-Creating multiple ‘timers’ seems to have worked, eventually will have to only start when both users click start but that shouldn't take too much time and we can do that in the final front end design.
-Logic behind the PvP: 
-30 second timer for each round, then it chooses random
-3 rounds of 13
-For an extension, save this data of the average player, the data that would be most interesting to save would be:
-First move
-ratio : to copy or not to copy (would add to 1)
-In database: games 100 - 139
-Player 1 and Player 2 need to be determined
-Currently having troubles with restarting the timers in the PVP
-I believe I found a fix, I just create a new timer once the old timer is completely reset, not recursion, but the function is called inside the function, but it is at the end, to guarantee that it is reset.
-Now must work on creating the 3 rounds of 13, 
-The rounds of 13 appear to work pretty well, need to of course add some sort of animation/break in between but that will be worked on during front end time. 
-Across all timers, once the timer resets, it counts the next second as well, so if the timer is at 9 when both players cast their choice, it will go to 8, and then reset to 11. This may not pose such a big problem in a real world application, however I don’t know what will happen if two players were to cast their next choices in that 1 second interval.
-Work on a way of saving the data in either a mysql database or perhaps just a python array. 	
-Need to determine the goal of this game, the options are:
-To simply defeat the opponent
-To gain the most amount of points
-To create the largest point differential
-After determining this, I can create the situation, then have the characters drawn, whether they need to be prisoners or not. 
-One possible situation could be that you are a businessman and you are trying to maximize profits over a rival businessman. You guys make consequential business moves. 
-I am currently able to store the data in a python array.
-The first move tally is going to be stored with room=room, user=user, game_num=1000, vote=move(1 or 2)
-Query with game_num = 1000
+-Creating multiple ‘timers’ seems to have worked, eventually will have to only start when both users click start but that shouldn't take too much time and we can do that in the final front end design.
+-Logic behind the PvP: 
+-30 second timer for each round, then it chooses random
+-3 rounds of 13
+-For an extension, save this data of the average player, the data that would be most interesting to save would be:
+-First move
+-ratio : to copy or not to copy (would add to 1)
+-In database: games 100 - 139
+-Player 1 and Player 2 need to be determined
+-Currently having troubles with restarting the timers in the PVP
+-I believe I found a fix, I just create a new timer once the old timer is completely reset, not recursion, but the function is called inside the function, but it is at the end, to guarantee that it is reset.
+-Now must work on creating the 3 rounds of 13, 
+-The rounds of 13 appear to work pretty well, need to of course add some sort of animation/break in between but that will be worked on during front end time. 
+-Across all timers, once the timer resets, it counts the next second as well, so if the timer is at 9 when both players cast their choice, it will go to 8, and then reset to 11. This may not pose such a big problem in a real world application, however I don’t know what will happen if two players were to cast their next choices in that 1 second interval.
+-Work on a way of saving the data in either a mysql database or perhaps just a python array. 	
+-Need to determine the goal of this game, the options are:
+-To simply defeat the opponent
+-To gain the most amount of points
+-To create the largest point differential
+-After determining this, I can create the situation, then have the characters drawn, whether they need to be prisoners or not. 
+-One possible situation could be that you are a businessman and you are trying to maximize profits over a rival businessman. You guys make consequential business moves. 
+-I am currently able to store the data in a python array.
+-The first move tally is going to be stored with room=room, user=user, game_num=1000, vote=move(1 or 2)
+-Query with game_num = 1000
 
 
