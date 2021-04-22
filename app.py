@@ -645,14 +645,49 @@ def handleVote2(ballot):
 
             #first move tally
             if len(player1_moves[tempTup2]) == 1:
-                vote = Votes(user=user, room=room,game_num=10000, vote=player1_moves[tempTup2][0])
+                vote = Votes(user=user, room=room,game_num=1000, vote=player1_moves[tempTup2][0])
                 db.session.add(vote)
                 db.session.commit()
-            if len(player1_moves[tempTup2]) == 1:
-                vote = Votes(user=user, room=room,game_num=10000, vote=player1_moves[tempTup2][0])
+            if len(player2_moves[tempTup2]) == 1:
+                vote = Votes(user=user, room=room,game_num=1000, vote=player1_moves[tempTup2][0])
                 db.session.add(vote)
                 db.session.commit()
-            #emit('first_timer', room=room)
+
+            if len(player1_moves[tempTup2]) > 1:
+                length = len(player1_moves[tempTup2])
+                player1_recent_move = player1_moves[tempTup2][length-1]
+                player2_second_recent_move = player2_moves[tempTup2][length-2]
+                if player1_recent_move == player2_second_recent_move:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=1)
+                    db.session.add(vote)
+                    db.session.commit()
+                else:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=2)
+                    db.session.add(vote)
+                    db.session.commit()
+
+            if len(player2_moves[tempTup2]) > 1:
+                length = len(player2_moves[tempTup2])
+                player2_recent_move = player2_moves[tempTup2][length-1]
+                player1_second_recent_move = player1_moves[tempTup2][length-2]
+                if player2_recent_move == player1_second_recent_move:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=1)
+                    db.session.add(vote)
+                    db.session.commit()
+                else:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=2)
+                    db.session.add(vote)
+                    db.session.commit()
+
+            cooperate_first = Votes.query.filter_by(game_num=1000, vote=1).count()
+            cheat_first = Votes.query.filter_by(game_num=1000, vote=2).count()
+            emit('message2', {'msg': "Cooperate has been played first " + str(cooperate_first) + " times"}, room=room)
+            emit('message2', {'msg': "Cheat has been played first " + str(cheat_first) + " times"}, room=room)
+
+            copy = Votes.query.filter_by(game_num=2000, vote=1).count()
+            non_copy = Votes.query.filter_by(game_num=2000, vote=2).count()
+            emit('message2', {'msg': "Players have copied  " + str(copy) + " times"}, room=room)
+            emit('message2', {'msg': "Players have not copied" + str(non_copy) + " times"}, room=room)
     else:
         if tempTup2 not in player1_moves:
             player1_moves[tempTup2] = []
@@ -693,9 +728,56 @@ def handleVote2(ballot):
                     player1_scores[tempTup2] += s[0]
                     player2_scores[tempTup2] += s[1]
             player_game_nums[room] += 1
+
+            if len(player1_moves[tempTup2]) == 1:
+                vote = Votes(user=user, room=room,game_num=1000, vote=player1_moves[tempTup2][0])
+                db.session.add(vote)
+                db.session.commit()
+            if len(player2_moves[tempTup2]) == 1:
+                vote = Votes(user=user, room=room,game_num=1000, vote=player1_moves[tempTup2][0])
+                db.session.add(vote)
+                db.session.commit()
+
+            if len(player1_moves[tempTup2]) > 1:
+                length = len(player1_moves[tempTup2])
+                player1_recent_move = player1_moves[tempTup2][length-1]
+                player2_second_recent_move = player2_moves[tempTup2][length-2]
+                if player1_recent_move == player2_second_recent_move:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=1)
+                    db.session.add(vote)
+                    db.session.commit()
+                else:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=2)
+                    db.session.add(vote)
+                    db.session.commit()
+
+            if len(player2_moves[tempTup2]) > 1:
+                length = len(player2_moves[tempTup2])
+                player2_recent_move = player2_moves[tempTup2][length-1]
+                player1_second_recent_move = player1_moves[tempTup2][length-2]
+                if player2_recent_move == player1_second_recent_move:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=1)
+                    db.session.add(vote)
+                    db.session.commit()
+                else:
+                    vote = Votes(user=user, room=room, game_num=2000, vote=2)
+                    db.session.add(vote)
+                    db.session.commit()
+
             emit('vote_results2', {'player1': player1_scores[tempTup2], 'player2': player2_scores[tempTup2]}, room=room)
             emit('message2', {'msg': "Player1: " + toString(player1_moves[tempTup2])}, room=room)
             emit('message2', {'msg': "Player2: " + toString(player2_moves[tempTup2])}, room=room)
+
+            cooperate_first = Votes.query.filter_by(game_num=1000, vote=1).count()
+            cheat_first = Votes.query.filter_by(game_num=1000, vote=2).count()
+            emit('message2', {'msg': "Cooperate has been played first " + str(cooperate_first) + " times"}, room=room)
+            emit('message2', {'msg': "Cheat has been played first " + str(cheat_first) + " times"}, room=room)
+
+            copy = Votes.query.filter_by(game_num=2000, vote=1).count()
+            non_copy = Votes.query.filter_by(game_num=2000, vote=2).count()
+            emit('message2', {'msg': "Players have copied  " + str(copy) + " times"}, room=room)
+            emit('message2', {'msg': "Players have not copied " + str(non_copy) + " times"}, room=room)
+
             player_timer({'seconds': 12})
 
 
