@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player v Player</title>
+    <link href="../static/boostrap.min.css" rel="stylesheet" />
+    <link href="../static/vs_machine.css" rel="stylesheet" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script type="text/javascript" src="../js/pvp.js"></script>
+</head>
+<body>
+    <h2 >Welcome to Chat Room</h2>
+    <h2>Room : {{session['room']}}</h2><br />
+    <h2>User: {{ session['username'] }}</h2>
+    <p id="timer"></p>
+    <p id="player1"></p>
+    <p id="player2"></p>
+    <button type="button" id="cooperate" class="btn btn-info">COOPERATE</button> <br /><br />
+    <button type="button" id="cheat" class="btn btn-info">CHEAT</button> <br /><br />
+    <button type="button" id="start" class="btn-outline-primary">START</button>
+
+</body>
+</html>
