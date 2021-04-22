@@ -69,5 +69,10 @@ Senior Research Project
 - I am currently able to store the data in a python array.
 - The first move tally is going to be stored with room=room, user=user, game_num=1000, vote=move(1 or 2)
   - Query with game_num = 1000
+- In terms of actual game theory, we can eliminate the first option of defeating the opponent. This simply incentivizes the player to cheat constantly. We can also eliminate the third option using this.
+- The most realistic idea is to maximize points scored, I think the best way to use this project is to look at the statistics of how people play against each other to maximize the points scored.
+- The copy tally is going to be stored with room=room, user=user, game_num=2000, vote=1,.
+  - The non copy tally is going to be vote=2.
+
 
 
