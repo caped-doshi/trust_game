@@ -1,19 +1,19 @@
 # trust_game
 Senior Research Project
 - Socket io has been a real issue so far the packages that worked were as follows.
-- Flask-SocketIO==4.3.1
-- python-engineio==3.13.2 
-- python-socketio==4.6.0
+  - Flask-SocketIO==4.3.1
+   - python-engineio==3.13.2 
+  - python-socketio==4.6.0
 - Use pip-freeze to check the dependencies
 - Used this code to create a wave effect with css animations
-- https://www.instagram.com/p/CBBPQ01ge7J/
+- [Wave Animation](https://www.instagram.com/p/CBBPQ01ge7J/)
 - Little bit of trouble with the progress bar on chat.html
-- Resolved by putting it in the chatbox div
-- Glitch Text: https://www.youtube.com/watch?v=7Xyg8Ja7dyY
-- Neon Button: https://www.youtube.com/watch?v=ex7jGbyFgpA&t=0s
-- Page Transitions: https://www.youtube.com/watch?v=ckJ7gdIeebc
-- Had an issue with chrome not updating changes in the actual code, if this issue occurs again just clear the cache in chrome. 
-- Speech Bubbles for Narrator: https://www.youtube.com/results?search_query=javascript+speech+bubble
+  - Resolved by putting it in the chatbox div
+- [Glitch Text](https://www.youtube.com/watch?v=7Xyg8Ja7dyY)
+- [Neon Button](https://www.youtube.com/watch?v=ex7jGbyFgpA&t=0s)
+- [Page Transitions](https://www.youtube.com/watch?v=ckJ7gdIeebc)
+  - Had an issue with chrome not updating changes in the actual code, if this issue occurs again just clear the cache in chrome. 
+- [Speech Bubbles for Narrator](https://www.youtube.com/results?search_query=javascript+speech+bubble)
 - To avoid having a huge text bubble when I got a lot of text, I tried many different methods to get rid of the spans, get rid of the divs, everything. What ended up working was “hiding” the spans that were created in the ‘revealOneCharacter’ method. Hiding them let the other spans go on top of them so there isn’t just blank text lying around which is what I thought would happen. Also utilized a proxy so functions wouldnt overlap each other due to the delay that I was using between spans. 
 - Javascript Timer
 - Something that did not work initially was the timer. This is because the countdown element was not loading in and was coming in as null.
